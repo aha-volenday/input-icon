@@ -1,0 +1,7 @@
+.iconpicker-popover.fade.in {
+    opacity: 1 !important;
+}
+
+.iconpicker-popover.fade:not(.in) {
+    opacity: 0 !important;
+}
