@@ -49,11 +49,9 @@ export default class InputIcon extends Component {
 					disabled={disabled}
 					ref={this.iconPicker}
 				/>
-				<div class="input-group-append">
-					<span class="input-group-text">
-						<FontAwesomeIcon icon={newValue} />
-					</span>
-				</div>
+				<span class="input-group-addon">
+					<FontAwesomeIcon icon={newValue} />
+				</span>
 			</div>
 		);
 	}
