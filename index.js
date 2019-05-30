@@ -34,7 +34,7 @@ export default class InputIcon extends Component {
 		}
 
 		return (
-			<div class="input-group">
+			<div class="input-group" style={{ width: '100%' }}>
 				<input
 					type="text"
 					class="form-control icp icp-auto"
