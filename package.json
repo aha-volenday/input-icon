@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/input-icon",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"private": false,
 	"license": "MIT",
 	"author": "Jerome Miranda <jerome.m.miranda@gmail.com>",
@@ -10,11 +10,6 @@
 	},
 	"main": "dist/index.min.js",
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "~1.2.18",
-		"@fortawesome/free-brands-svg-icons": "~5.8.2",
-		"@fortawesome/free-regular-svg-icons": "~5.8.2",
-		"@fortawesome/free-solid-svg-icons": "~5.8.2",
-		"@fortawesome/react-fontawesome": "~0.1.4",
 		"fontawesome-iconpicker": "~3.2.0",
 		"react": "~16.8.6"
 	},

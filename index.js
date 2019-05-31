@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-library.add(fas, fab, far);
 
 import 'fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css';
 import './styles.css';
@@ -25,14 +18,6 @@ export default class InputIcon extends Component {
 	renderInput() {
 		const { disabled, id, label = '', placeholder = '', required = false, styles = {}, value = '' } = this.props;
 
-		let newValue = value;
-		const valueSplit = newValue.split(' ');
-		if (valueSplit.length == 2) {
-			const iconSplit = valueSplit[1].split('-');
-			iconSplit.shift();
-			newValue = [valueSplit[0], iconSplit.join('-')];
-		}
-
 		return (
 			<div class="input-group" style={{ width: '100%' }}>
 				<input
@@ -50,7 +35,7 @@ export default class InputIcon extends Component {
 					ref={this.iconPicker}
 				/>
 				<span class="input-group-addon">
-					<FontAwesomeIcon icon={newValue} />
+					<i class={value} />
 				</span>
 			</div>
 		);
