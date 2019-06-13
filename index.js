@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import InputDate from '@volenday/input-date';
+import { Pane, Popover, Position } from 'evergreen-ui';
 
 import 'fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css';
 import './styles.css';
@@ -14,6 +16,45 @@ export default class InputIcon extends Component {
 			onChange(id, e.iconpickerValue);
 		});
 	}
+
+	renderPopover = () => {
+		const { id, label = '', historyTrackValue = '', onHistoryTrackChange } = this.props;
+
+		return (
+			<Popover
+				content={
+					<Pane
+						width={240}
+						height={240}
+						display="flex"
+						alignItems="center"
+						flexDirection="column"
+						justifyContent="center"
+						position={Position.TOP_RIGHT}
+					>
+						<InputDate 
+							id={id}
+							label={label}
+							required={true}
+							withTime={true}
+							withLabel={true}
+							value={historyTrackValue}
+							onChange={onHistoryTrackChange}
+						/>
+					</Pane>
+				}
+				statelessProps={{ zIndex: 99 }}
+			>
+				{({ getRef, toggle }) => {
+					return (
+						<span class="pull-right text-warning" ref={getRef}>
+							<i onClick={toggle} style={{ cursor: 'pointer' }} class="fa fa-exclamation-circle" aria-hidden="true"></i>
+						</span>
+					);
+				}}					
+			</Popover>
+		);
+	};
 
 	renderInput() {
 		const { disabled, id, label = '', placeholder = '', required = false, styles = {}, value = '' } = this.props;
@@ -42,9 +83,19 @@ export default class InputIcon extends Component {
 	}
 
 	render() {
-		const { id, label = '', required = false, withLabel = false } = this.props;
+		const { id, label = '', required = false, withLabel = false, historyTrack = false } = this.props;
+		console.log('historyTrack: ', historyTrack);
 
 		if (withLabel) {
+			if (historyTrack) {
+				return (
+					<div class="form-group">
+						<span class="pull-left"><label for={id}>{required ? `*${label}` : label}</label></span>
+						{this.renderInput()}
+					</div>
+				);	
+			}
+			
 			return (
 				<div class="form-group">
 					<label for={id}>{required ? `*${label}` : label}</label>
@@ -52,6 +103,15 @@ export default class InputIcon extends Component {
 				</div>
 			);
 		} else {
+			if (historyTrack) {
+				return (
+					<div class="form-group">
+						{this.renderPopover()}
+						{this.renderInput()}
+					</div>
+				);
+			}
+
 			return this.renderInput();
 		}
 
