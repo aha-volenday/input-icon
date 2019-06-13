@@ -84,13 +84,13 @@ export default class InputIcon extends Component {
 
 	render() {
 		const { id, label = '', required = false, withLabel = false, historyTrack = false } = this.props;
-		console.log('historyTrack: ', historyTrack);
 
 		if (withLabel) {
 			if (historyTrack) {
 				return (
 					<div class="form-group">
 						<span class="pull-left"><label for={id}>{required ? `*${label}` : label}</label></span>
+						{this.renderPopover()}
 						{this.renderInput()}
 					</div>
 				);	
