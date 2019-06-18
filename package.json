@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/input-icon",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"private": false,
 	"license": "MIT",
 	"author": "Jerome Miranda <jerome.m.miranda@gmail.com>",
@@ -10,7 +10,7 @@
 	},
 	"main": "dist/index.min.js",
 	"dependencies": {
-		"@volenday/input-date": "^0.0.5",
+		"@volenday/input-date": "~0.0.7",
 		"evergreen-ui": "^4.17.0",
 		"fontawesome-iconpicker": "~3.2.0",
 		"react": "~16.8.6"
@@ -34,12 +34,12 @@
 		"@babel/plugin-syntax-dynamic-import": "~7.2.0",
 		"@babel/plugin-syntax-import-meta": "~7.2.0",
 		"@babel/plugin-transform-async-to-generator": "~7.4.4",
-		"@babel/polyfill": "~7.4.4",
 		"@babel/preset-env": "~7.4.5",
 		"@babel/preset-react": "^7.0.0",
 		"@babel/runtime": "~7.4.5",
 		"babel-loader": "~8.0.6",
 		"babel-plugin-react-html-attrs": "^2.1.0",
+		"core-js": "~3.1.4",
 		"css-loader": "~3.0.0",
 		"file-loader": "~4.0.0",
 		"gulp": "~4.0.2",
