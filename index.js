@@ -30,9 +30,8 @@ export default class InputIcon extends Component {
 						alignItems="center"
 						flexDirection="column"
 						justifyContent="center"
-						position={Position.TOP_RIGHT}
-					>
-						<InputDate 
+						position={Position.TOP_RIGHT}>
+						<InputDate
 							id={id}
 							label={label}
 							required={true}
@@ -43,15 +42,19 @@ export default class InputIcon extends Component {
 						/>
 					</Pane>
 				}
-				statelessProps={{ zIndex: 99 }}
-			>
+				statelessProps={{ zIndex: 99 }}>
 				{({ getRef, toggle }) => {
 					return (
-						<span class="pull-right text-warning" ref={getRef}>
-							<i onClick={toggle} style={{ cursor: 'pointer' }} class="fa fa-exclamation-circle" aria-hidden="true"></i>
+						<span class="float-right text-warning" ref={getRef}>
+							<i
+								onClick={toggle}
+								style={{ cursor: 'pointer' }}
+								class="fa fa-exclamation-circle"
+								aria-hidden="true"
+							/>
 						</span>
 					);
-				}}					
+				}}
 			</Popover>
 		);
 	};
@@ -75,9 +78,11 @@ export default class InputIcon extends Component {
 					disabled={disabled}
 					ref={this.iconPicker}
 				/>
-				<span class="input-group-addon">
-					<i class={value} />
-				</span>
+				<div class="input-group-append">
+					<span class="input-group-text">
+						<i class={value} />
+					</span>
+				</div>
 			</div>
 		);
 	}
@@ -89,13 +94,15 @@ export default class InputIcon extends Component {
 			if (historyTrack) {
 				return (
 					<div class="form-group">
-						<span class="pull-left"><label for={id}>{required ? `*${label}` : label}</label></span>
+						<span class="float-left">
+							<label for={id}>{required ? `*${label}` : label}</label>
+						</span>
 						{this.renderPopover()}
 						{this.renderInput()}
 					</div>
-				);	
+				);
 			}
-			
+
 			return (
 				<div class="form-group">
 					<label for={id}>{required ? `*${label}` : label}</label>
