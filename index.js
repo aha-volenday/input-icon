@@ -7,6 +7,7 @@ import './styles.css';
 
 export default class InputIcon extends Component {
 	iconPicker = React.createRef();
+	state = { hasChange: false };
 
 	componentDidMount() {
 		const { id, onChange } = this.props;
@@ -14,6 +15,7 @@ export default class InputIcon extends Component {
 		$(this.iconPicker.current).iconpicker();
 		$(this.iconPicker.current).on('iconpickerSelected', e => {
 			onChange(id, e.iconpickerValue);
+			this.setState({ hasChange: true });
 		});
 	}
 
@@ -88,6 +90,7 @@ export default class InputIcon extends Component {
 	}
 
 	render() {
+		const { hasChange } = this.state;
 		const { id, label = '', required = false, withLabel = false, historyTrack = false } = this.props;
 
 		if (withLabel) {
@@ -97,7 +100,7 @@ export default class InputIcon extends Component {
 						<span class="float-left">
 							<label for={id}>{required ? `*${label}` : label}</label>
 						</span>
-						{this.renderPopover()}
+						{hasChange && this.renderPopover()}
 						{this.renderInput()}
 					</div>
 				);
@@ -113,7 +116,7 @@ export default class InputIcon extends Component {
 			if (historyTrack) {
 				return (
 					<div class="form-group">
-						{this.renderPopover()}
+						{hasChange && this.renderPopover()}
 						{this.renderInput()}
 					</div>
 				);
