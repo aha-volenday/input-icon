@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/input-icon",
-	"version": "0.0.12",
+	"version": "0.0.13",
 	"private": false,
 	"license": "MIT",
 	"author": "Jerome Miranda <jerome.m.miranda@gmail.com>",
@@ -17,7 +17,7 @@
 		"react": "~16.8.6"
 	},
 	"dependencies": {
-		"@volenday/input-date": "~0.0.7",
+		"@volenday/input-date": "~0.0.10",
 		"evergreen-ui": "^4.17.0",
 		"fontawesome-iconpicker": "~3.2.0",
 		"react": "~16.8.6",
