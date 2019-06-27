@@ -52,6 +52,12 @@ module.exports = {
 		chunkFilename: '[name].[chunkhash].chunk.min.js',
 		libraryTarget: 'commonjs2'
 	},
+	externals: {
+		'@volenday/input-date': 'commonjs2 @volenday/input-date',
+		'evergreen-ui': 'commonjs2 evergreen-ui',
+		'fontawesome-iconpicker': 'commonjs2 fontawesome-iconpicker',
+		react: 'commonjs2 react'
+	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.optimize.OccurrenceOrderPlugin(),
