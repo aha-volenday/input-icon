@@ -54,9 +54,9 @@ module.exports = {
 	},
 	externals: {
 		'@volenday/input-date': 'commonjs2 @volenday/input-date',
-		'evergreen-ui': 'commonjs2 evergreen-ui',
 		'fontawesome-iconpicker': 'commonjs2 fontawesome-iconpicker',
-		react: 'commonjs2 react'
+		react: 'commonjs2 react',
+		antd: 'commonjs2 antd'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),

@@ -1,62 +1,58 @@
 import React, { Component } from 'react';
 import InputDate from '@volenday/input-date';
-import { Pane, Popover, Position } from 'evergreen-ui';
+
+// ant design
+import Input from 'antd/es/input';
+import Button from 'antd/es/button';
+import Popover from 'antd/es/popover';
 
 import 'fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css';
+import 'antd/dist/antd.min.css';
 import './styles.css';
 
 export default class InputIcon extends Component {
 	iconPicker = React.createRef();
-	state = { hasChange: false };
+	state = { hasChange: false, isPopoverVisible: false };
 
 	componentDidMount() {
 		const { id, onChange } = this.props;
 
-		$(this.iconPicker.current).iconpicker();
-		$(this.iconPicker.current).on('iconpickerSelected', e => {
+		$(`#${id}`).iconpicker();
+		$(`#${id}`).on('iconpickerSelected', e => {
 			onChange(id, e.iconpickerValue);
 			this.setState({ hasChange: true });
 		});
 	}
 
+	handlePopoverVisible = visible => {
+		this.setState({ isPopoverVisible: visible });
+	};
+
 	renderPopover = () => {
+		const { isPopoverVisible } = this.state;
 		const { id, label = '', historyTrackValue = '', onHistoryTrackChange } = this.props;
 
 		return (
 			<Popover
 				content={
-					<Pane
-						width={240}
-						height={240}
-						display="flex"
-						alignItems="center"
-						flexDirection="column"
-						justifyContent="center"
-						position={Position.TOP_RIGHT}>
-						<InputDate
-							id={id}
-							label={label}
-							required={true}
-							withTime={true}
-							withLabel={true}
-							value={historyTrackValue}
-							onChange={onHistoryTrackChange}
-						/>
-					</Pane>
+					<InputDate 
+						id={id}
+						label={label}
+						required={true}
+						withTime={true}
+						withLabel={true}
+						value={historyTrackValue}
+						onChange={onHistoryTrackChange}
+					/>
 				}
-				statelessProps={{ zIndex: 99 }}>
-				{({ getRef, toggle }) => {
-					return (
-						<span class="float-right text-warning" ref={getRef}>
-							<i
-								onClick={toggle}
-								style={{ cursor: 'pointer' }}
-								class="fa fa-exclamation-circle"
-								aria-hidden="true"
-							/>
-						</span>
-					);
-				}}
+				trigger="click"
+				title="History Track"
+				visible={isPopoverVisible}
+				onVisibleChange={this.handlePopoverVisible}
+			>
+				<span class="float-right">
+					<Button type="link" shape="circle-outline" icon="warning" size="small" style={{ color: '#ffc107' }} />
+				</span>
 			</Popover>
 		);
 	};
@@ -65,27 +61,24 @@ export default class InputIcon extends Component {
 		const { disabled, id, label = '', placeholder = '', required = false, styles = {}, value = '' } = this.props;
 
 		return (
-			<div class="input-group" style={{ width: '100%' }}>
-				<input
-					type="text"
-					class="form-control icp icp-auto"
-					data-placement="bottomRight"
-					name={id}
-					autoComplete="off"
-					placeholder={placeholder || label || id}
-					value={value ? value : ''}
-					onChange={e => {}}
-					required={required}
-					style={styles}
-					disabled={disabled}
-					ref={this.iconPicker}
-				/>
-				<div class="input-group-append">
-					<span class="input-group-text">
-						<i class={value} />
-					</span>
-				</div>
-			</div>
+			<Input 
+				type="text"
+				id={id}
+				class="icp icp-auto"
+				data-placement="bottomRight"
+				name={id}
+				autoComplete="off"
+				placeholder={placeholder || label || id}
+				value={value ? value : ''}
+				onChange={e => {}}
+				required={required}
+				style={styles}
+				disabled={disabled}
+				ref={this.iconPicker}
+				addonAfter={<i class={value} />}
+				size="large"
+				allowClear
+			/>
 		);
 	}
 
