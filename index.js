@@ -35,7 +35,7 @@ export default class InputIcon extends Component {
 		return (
 			<Popover
 				content={
-					<InputDate 
+					<InputDate
 						id={id}
 						label={label}
 						required={true}
@@ -48,10 +48,15 @@ export default class InputIcon extends Component {
 				trigger="click"
 				title="History Track"
 				visible={isPopoverVisible}
-				onVisibleChange={this.handlePopoverVisible}
-			>
+				onVisibleChange={this.handlePopoverVisible}>
 				<span class="float-right">
-					<Button type="link" shape="circle-outline" icon="warning" size="small" style={{ color: '#ffc107' }} />
+					<Button
+						type="link"
+						shape="circle-outline"
+						icon="warning"
+						size="small"
+						style={{ color: '#ffc107' }}
+					/>
 				</span>
 			</Popover>
 		);
@@ -61,7 +66,7 @@ export default class InputIcon extends Component {
 		const { disabled, id, label = '', placeholder = '', required = false, styles = {}, value = '' } = this.props;
 
 		return (
-			<Input 
+			<Input
 				type="text"
 				id={id}
 				class="icp icp-auto"
@@ -84,7 +89,7 @@ export default class InputIcon extends Component {
 
 	render() {
 		const { hasChange } = this.state;
-		const { id, label = '', required = false, withLabel = false, historyTrack = false } = this.props;
+		const { id, action, label = '', required = false, withLabel = false, historyTrack = false } = this.props;
 
 		if (withLabel) {
 			if (historyTrack) {
@@ -93,7 +98,7 @@ export default class InputIcon extends Component {
 						<span class="float-left">
 							<label for={id}>{required ? `*${label}` : label}</label>
 						</span>
-						{hasChange && this.renderPopover()}
+						{hasChange && action !== 'add' && this.renderPopover()}
 						{this.renderInput()}
 					</div>
 				);
@@ -109,7 +114,7 @@ export default class InputIcon extends Component {
 			if (historyTrack) {
 				return (
 					<div class="form-group">
-						{hasChange && this.renderPopover()}
+						{hasChange && action !== 'add' && this.renderPopover()}
 						{this.renderInput()}
 					</div>
 				);
