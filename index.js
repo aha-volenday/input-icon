@@ -15,12 +15,12 @@ export default class InputIcon extends Component {
 	state = { hasChange: false, isPopoverVisible: false };
 
 	componentDidMount() {
-		const { id, onChange } = this.props;
+		const { id, action, onChange } = this.props;
 
 		$(`#${id}`).iconpicker();
 		$(`#${id}`).on('iconpickerSelected', e => {
 			onChange(id, e.iconpickerValue);
-			this.setState({ hasChange: true });
+			this.setState({ hasChange: action === 'add' ? false : true });
 		});
 	}
 
