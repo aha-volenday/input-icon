@@ -81,7 +81,6 @@ export default class InputIcon extends Component {
 				disabled={disabled}
 				ref={this.iconPicker}
 				addonAfter={<i class={value} />}
-				size="large"
 				allowClear
 			/>
 		);
