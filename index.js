@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import InputDate from '@volenday/input-date';
 
 // ant design
-import Input from 'antd/es/input';
-import Button from 'antd/es/button';
-import Popover from 'antd/es/popover';
+import { Form, Input, Button, Popover } from 'antd';
 
 import 'fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css';
 import 'antd/dist/antd.min.css';
@@ -69,7 +67,6 @@ export default class InputIcon extends Component {
 			<Input
 				type="text"
 				id={id}
-				class="icp icp-auto"
 				data-placement="bottomRight"
 				name={id}
 				autoComplete="off"
@@ -93,29 +90,25 @@ export default class InputIcon extends Component {
 		if (withLabel) {
 			if (historyTrack) {
 				return (
-					<div class="form-group">
-						<span class="float-left">
-							<label for={id}>{required ? `*${label}` : label}</label>
-						</span>
+					<Form.Item colon={false} label={label} required={required}>
 						{hasChange && action !== 'add' && this.renderPopover()}
 						{this.renderInput()}
-					</div>
+					</Form.Item>
 				);
 			}
 
 			return (
-				<div class="form-group">
-					<label for={id}>{required ? `*${label}` : label}</label>
+				<Form.Item colon={false} label={label} required={required}>
 					{this.renderInput()}
-				</div>
+				</Form.Item>
 			);
 		} else {
 			if (historyTrack) {
 				return (
-					<div class="form-group">
+					<Form.Item>
 						{hasChange && action !== 'add' && this.renderPopover()}
 						{this.renderInput()}
-					</div>
+					</Form.Item>
 				);
 			}
 
