@@ -53,7 +53,6 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	externals: {
-		'@volenday/input-date': 'commonjs2 @volenday/input-date',
 		'fontawesome-iconpicker': 'commonjs2 fontawesome-iconpicker',
 		react: 'commonjs2 react',
 		antd: 'commonjs2 antd'
