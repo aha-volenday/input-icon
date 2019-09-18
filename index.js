@@ -11,7 +11,9 @@ export default class InputIcon extends Component {
 		const { id, onChange } = this.props;
 
 		$(`#${id}`).iconpicker();
-		$(`#${id}`).on('iconpickerSelected', e => onChange(id, e.iconpickerValue));
+		$(`#${id}`).on('iconpickerSelected', e =>
+			onChange({ target: { name: id, value: e.iconpickerValue } }, id, e.iconpickerValue)
+		);
 	}
 
 	renderInput() {
