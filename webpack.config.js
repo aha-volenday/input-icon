@@ -53,9 +53,11 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	externals: {
-		'fontawesome-iconpicker': 'commonjs2 fontawesome-iconpicker',
+		'@fortawesome/free-brands-svg-icons': 'commonjs2 @fortawesome/free-brands-svg-icons',
+		'@fortawesome/free-solid-svg-icons': 'commonjs2 @fortawesome/free-solid-svg-icons',
+		antd: 'commonjs2 antd',
 		react: 'commonjs2 react',
-		antd: 'commonjs2 antd'
+		'react-dom': 'commonjs2 react-dom'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),

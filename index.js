@@ -1,41 +1,52 @@
 import React, { Component } from 'react';
-import { Form, Input } from 'antd';
+import { Form, Select } from 'antd';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
-import 'fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css';
-import './styles.css';
+const icons = Object.values({ ...fab, ...fas });
 
 export default class InputIcon extends Component {
-	iconPicker = React.createRef();
-
-	componentDidMount() {
-		const { id, onChange } = this.props;
-
-		$(`#${id}`).iconpicker();
-		$(`#${id}`).on('iconpickerSelected', e =>
-			onChange({ target: { name: id, value: e.iconpickerValue } }, id, e.iconpickerValue)
-		);
-	}
-
 	renderInput() {
-		const { disabled, id, label = '', placeholder = '', required = false, styles = {}, value = '' } = this.props;
+		const {
+			disabled,
+			id,
+			label = '',
+			onChange,
+			placeholder = '',
+			required = false,
+			styles = {},
+			value = ''
+		} = this.props;
 
 		return (
-			<Input
-				type="text"
-				id={id}
-				data-placement="bottomRight"
-				name={id}
-				autoComplete="off"
-				placeholder={placeholder || label || id}
-				value={value ? value : ''}
-				onChange={e => {}}
-				required={required}
-				style={styles}
+			<Select
 				disabled={disabled}
-				ref={this.iconPicker}
-				addonAfter={<i class={value} />}
-				allowClear
-			/>
+				id={id}
+				name={id}
+				placeholder="select one country"
+				onChange={e => onChange({ target: { name: id, value: e } }, id, e)}
+				optionLabelProp="label"
+				placeholder={placeholder || label || id}
+				required={required}
+				showSearch
+				style={{ width: '100%', ...styles }}
+				suffixIcon={<i class={value} />}
+				value={value ? value : ''}>
+				{icons.map(d => (
+					<Select.Option
+						key={`${d.prefix}-fa-${d.iconName}`}
+						value={`${d.prefix} fa-${d.iconName}`}
+						label={`${d.prefix} fa-${d.iconName}`}>
+						<span
+							role="img"
+							aria-label={d.iconName}
+							style={{ width: 20, paddingLeft: 10, paddingRight: 10 }}>
+							<i class={`${d.prefix} fa-${d.iconName}`} />
+						</span>
+						{d.prefix} fa-{d.iconName}
+					</Select.Option>
+				))}
+			</Select>
 		);
 	}
 
