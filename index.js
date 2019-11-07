@@ -51,12 +51,20 @@ export default class InputIcon extends Component {
 	}
 
 	render() {
-		const { label = '', required = false, withLabel = false } = this.props;
+		const { error = null, extra = null, label = '', required = false, withLabel = false } = this.props;
 
 		const formItemCommonProps = {
 			colon: false,
-			label: withLabel ? label : false,
-			required
+			help: error ? error : '',
+			label: withLabel ? (
+				<>
+					<div style={{ float: 'right' }}>{extra}</div> <span class="label">{label}</span>
+				</>
+			) : (
+				false
+			),
+			required,
+			validateStatus: error ? 'error' : 'success'
 		};
 
 		return <Form.Item {...formItemCommonProps}>{this.renderInput()}</Form.Item>;
