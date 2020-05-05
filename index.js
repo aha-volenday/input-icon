@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Form, Select } from 'antd';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
 const icons = Object.values({ ...fab, ...fas });
 
-export default class InputIcon extends Component {
-	renderInput() {
-		const {
-			disabled,
-			id,
-			label = '',
-			onChange,
-			placeholder = '',
-			required = false,
-			styles = {},
-			value = ''
-		} = this.props;
-
+export default ({
+	disabled,
+	error = null,
+	extra = null,
+	id,
+	label = '',
+	onChange,
+	placeholder = '',
+	required = false,
+	styles = {},
+	value = '',
+	withLabel = false
+}) => {
+	const renderInput = () => {
 		return (
 			<Select
 				disabled={disabled}
@@ -48,25 +49,21 @@ export default class InputIcon extends Component {
 				))}
 			</Select>
 		);
-	}
+	};
 
-	render() {
-		const { error = null, extra = null, label = '', required = false, withLabel = false } = this.props;
+	const formItemCommonProps = {
+		colon: false,
+		help: error ? error : '',
+		label: withLabel ? (
+			<>
+				<div style={{ float: 'right' }}>{extra}</div> <span class="label">{label}</span>
+			</>
+		) : (
+			false
+		),
+		required,
+		validateStatus: error ? 'error' : 'success'
+	};
 
-		const formItemCommonProps = {
-			colon: false,
-			help: error ? error : '',
-			label: withLabel ? (
-				<>
-					<div style={{ float: 'right' }}>{extra}</div> <span class="label">{label}</span>
-				</>
-			) : (
-				false
-			),
-			required,
-			validateStatus: error ? 'error' : 'success'
-		};
-
-		return <Form.Item {...formItemCommonProps}>{this.renderInput()}</Form.Item>;
-	}
-}
+	return <Form.Item {...formItemCommonProps}>{renderInput()}</Form.Item>;
+};
