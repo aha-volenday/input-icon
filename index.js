@@ -3,6 +3,7 @@ import { Form, Select } from 'antd';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
+const browser = typeof process.browser !== 'undefined' ? process.browser : true;
 const icons = Object.values({ ...fab, ...fas });
 
 export default ({
@@ -65,5 +66,9 @@ export default ({
 		validateStatus: error ? 'error' : 'success'
 	};
 
-	return <Form.Item {...formItemCommonProps}>{renderInput()}</Form.Item>;
+	return (
+		<Form.Item {...formItemCommonProps}>
+			{browser ? renderInput() : <Skeleton active paragraph={{ rows: 1, width: '100%' }} title={false} />}
+		</Form.Item>
+	);
 };
