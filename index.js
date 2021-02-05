@@ -3,7 +3,7 @@ import { Form, Select } from 'antd';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
-const browser = typeof process.browser !== 'undefined' ? process.browser : true;
+const browser = typeof window !== 'undefined' ? true : false;
 const icons = Object.values({ ...fab, ...fas });
 
 export default ({
