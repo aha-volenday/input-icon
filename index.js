@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Select } from 'antd';
+import { Form, Select, Tooltip } from 'antd';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,11 +16,12 @@ export default ({
 	placeholder = '',
 	required = false,
 	styles = {},
+	toolTip = {},
 	value = '',
 	withLabel = false
 }) => {
 	const renderInput = () => {
-		return (
+		const select = (
 			<Select
 				disabled={disabled}
 				id={id}
@@ -50,6 +51,8 @@ export default ({
 				))}
 			</Select>
 		);
+
+		return Object.keys(toolTip).length === 0 ? select : <Tooltip {...toolTip}>{select}</Tooltip>;
 	};
 
 	const formItemCommonProps = {
