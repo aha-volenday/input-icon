@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Select, Tooltip } from 'antd';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const browser = typeof window !== 'undefined' ? true : false;
 const icons = Object.values({ ...fab, ...fas });
@@ -16,12 +17,12 @@ export default ({
 	placeholder = '',
 	required = false,
 	styles = {},
-	toolTip = {},
+	toolTip = '',
 	value = '',
 	withLabel = false
 }) => {
 	const renderInput = () => {
-		const select = (
+		return (
 			<Select
 				disabled={disabled}
 				id={id}
@@ -51,8 +52,6 @@ export default ({
 				))}
 			</Select>
 		);
-
-		return Object.keys(toolTip).length === 0 ? select : <Tooltip {...toolTip}>{select}</Tooltip>;
 	};
 
 	const formItemCommonProps = {
@@ -60,7 +59,15 @@ export default ({
 		help: error ? error : '',
 		label: withLabel ? (
 			<>
-				<div style={{ float: 'right' }}>{extra}</div> <span class="label">{label}</span>
+				<div style={{ float: 'right' }}>{extra}</div>
+				<span class="label">
+					{label}{' '}
+					{toolTip && (
+						<Tooltip title={toolTip}>
+							<QuestionCircleOutlined />
+						</Tooltip>
+					)}
+				</span>
 			</>
 		) : (
 			false
